@@ -1,8 +1,8 @@
 const express = require("express");
 const https = require("https");
 const qs = require("querystring");
-const checksum_lib = require("./Paytm/checksum");
-const config = require("./Paytm/config");
+const checksum_lib = require("./paytm/checksum");
+const config = require("./paytm/config");
 const cors = require('cors');
 const app = express();
 app.use(cors())
