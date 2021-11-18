@@ -16,6 +16,7 @@ app.post("/paynow", [parseUrl, parseJson], (req, res) => {
   // Route for making payment
 
   var paymentDetails = {
+    orderID: req.body.id,
     amount: req.body.amount,
     customerId: req.body.name,
     customerEmail: req.body.email,
@@ -30,7 +31,7 @@ if(!paymentDetails.amount || !paymentDetails.customerId || !paymentDetails.custo
     params['WEBSITE'] = config.PaytmConfig.website;
     params['CHANNEL_ID'] = 'WEB';
     params['INDUSTRY_TYPE_ID'] = 'Retail';
-    params['ORDER_ID'] = 'TEST_'  + new Date().getTime();
+    params['ORDER_ID'] = 'TEST_'  + paymentDetails.orderID;
     params['CUST_ID'] = paymentDetails.customerId;
     params['TXN_AMOUNT'] = paymentDetails.amount;
     // change port number
