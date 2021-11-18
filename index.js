@@ -3,8 +3,9 @@ const https = require("https");
 const qs = require("querystring");
 const checksum_lib = require("./Paytm/checksum");
 const config = require("./Paytm/config");
-
+const cors = require('cors');
 const app = express();
+app.use(cors())
 
 const parseUrl = express.urlencoded({ extended: false });
 const parseJson = express.json({ extended: false });
@@ -37,7 +38,7 @@ if(!paymentDetails.amount || !paymentDetails.customerId || !paymentDetails.custo
     params['CUST_ID'] = paymentDetails.customerId;
     params['TXN_AMOUNT'] = paymentDetails.amount;
     // change port number
-    params['CALLBACK_URL'] = 'http://localhost:4000/callback';
+    params['CALLBACK_URL'] = 'https://zompay.herokuapp.com/callback';
     params['EMAIL'] = paymentDetails.customerEmail;
     params['MOBILE_NO'] = paymentDetails.customerPhone;
 
